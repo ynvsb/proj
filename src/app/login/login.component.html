@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Login Page</title>
+        <link rel="stylesheet" href="login.component.css">
+    </head>
+    <body>
+        <div class="center">
+            <h1>Login</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="email_field">
+                    <input type="text" placeholder="Enter Email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"/>
+                    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                        <span style="color: red;">
+                            <div *ngIf="f['email'].errors['required']">Email is required</div>
+                            <div *ngIf="f['email'].errors['email']">Email must be a valid email address</div>
+                        </span>
+                    </div>
+                </div>
+                <div class="email_field">
+                    <input type="password" placeholder="Enter Password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                        <span style="color: red;">
+                            <div *ngIf="f['password'].errors['required']">Password is required</div>
+                            <div *ngIf="f['password'].errors['minlength']">Password must be at least 8 characters</div>
+                            <div *ngIf="f['password'].errors['pattern']">Invalid password</div>
+                        </span>
+                    </div>
+                </div>
+                <input type="submit" value="login">
+                <!--span style="color: green;">{{result}}</span-->
+                <div class="signup_link">
+                    new user/admin? <a href="C:/Users/bharg/proj/src/app/registration/registration.component.html">Signup</a>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

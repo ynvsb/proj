@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Signup</title>
+        <link rel="stylesheet" href="registration.component.css">
+    </head>
+    <body>
+        <div class="center">
+            <h1>Signup</h1>
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                <div class="signup_field">
+                    <input type="text" placeholder="Username" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"/>
+                    <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                        <span style="color: red;">
+                            <div *ngIf="f['name'].errors['required']">Username is required</div>
+                            <div *ngIf="f['name'].errors['minlength']">Username is Too Short</div>
+                            <div *ngIf="f['name'].errors['maxlength']">Username is Too Long</div>
+                        </span>
+                    </div>
+                </div>
+                <div class="signup_field">
+                    <input type="text" placeholder="Email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"/>
+                    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                        <span style="color: red;">
+                            <div *ngIf="f['email'].errors['required']">Email is required</div>
+                            <div *ngIf="f['email'].errors['email']">Invalid Email</div>
+                        </span>
+                    </div>
+                </div>
+                <div class="signup_field">
+                    <input type="text" placeholder="Phone Number" formControlName="phonenumber" class="form-control" [ngClass]="{'is-invalid':submitted && f['phonenumber'].errors}"/>
+                    <div *ngIf="submitted && f['phonenumber'].errors" class="invalid-feedback">
+                        <span style="color: red;">
+                            <div *ngIf="f['phonenumber'].errors['required']">Phonenumber is required</div>
+                            <div *ngIf="f['phonenumber'].errors['pattern']">Invalid Phonenumber</div>
+                        </span>
+                    </div>
+                </div>
+                <div class="signup_field">
+                    <input type="password" placeholder="Password" formControlName="password" class="form-control" [ngClass]="{'is-invalid':submitted && f['password'].errors}"/>
+                    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                        <span style="color: red;">
+                            <div *ngIf="f['password'].errors['required']">Password is required</div>
+                            <div *ngIf="f['password'].errors['minlength']">Password is Too Short</div>
+                            <div *ngIf="f['password'].errors['pattern']">Invalid Password</div>
+                        </span>
+                    </div>
+                </div>
+                <div class="signup_field">
+                    <input type="password" placeholder="Confirm Password" formControlName="confirmpassword" class="form-control" [ngClass]="{'is-invalid': submitted && f['confirmpassword'].errors}"/>
+                    <div *ngIf="submitted && f['confirmpassword'].errors" class="invalid-feedback">
+                        <span style="color: red;">
+                            <div *ngIf="f['confirmpassword'].errors['required']">Confirm Password is required</div>
+                            <div *ngIf="f['confirmpassword'].errors['mustMatch']">Passwords does not matchhed</div>
+                        </span>
+                    </div>
+                </div>
+                <input type="submit" value="Register">
+                <!--span style="color:green;">{{msg}}</span-->
+                <div class="login_link">
+                    Existing member? <a href="/login">Login</a>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
